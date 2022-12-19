@@ -4,15 +4,12 @@ const guitarUtils = (function() {
     const modes = ['dúr', 'dór', 'frig', 'líd', 'mixolíd', 'moll(eol)', 'lokriszi'];
 
     // * Private functions
-    function getRandomElementOfArr(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
-    }
 
     // * Public functions
     function getNumberOfNotes(num = 5, noteList = notes) {
         let numOfNotes = [];
         for (let i = 0; i < num; i++) {
-            const newNote = getRandomElementOfArr(noteList);
+            const newNote = utils.getRandomElOfArr(noteList);
             if (!numOfNotes.includes(newNote)) {
                 numOfNotes.push(newNote);
                 continue;
@@ -23,11 +20,21 @@ const guitarUtils = (function() {
     }
 
     function getRandomScale(noteList = notes, modeList = modes) {
-        return `${getRandomElementOfArr(noteList)}-${getRandomElementOfArr(modeList)}`
+        return `${utils.getRandomElOfArr(noteList)}-${utils.getRandomElOfArr(modeList)}`
     }
     return {
         getNumberOfNotes,
         getRandomScale,
+    }
+})();
+
+const utils = (function() {
+    function getRandomElOfArr(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    return {
+        getRandomElOfArr,
     }
 })();
 
