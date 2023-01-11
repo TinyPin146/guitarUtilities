@@ -6,11 +6,16 @@ const guitarUtils = (function() {
     // * Private functions
 
     // * Public functions
-    function getNumberOfNotes(num = 5, noteList = notes) {
+    function getNumberOfNotes(num, includeAccidentals, noteList = notes) {
         let numOfNotes = [];
         for (let i = 0; i < num; i++) {
             const newNote = utils.getRandomElOfArr(noteList);
             if (!numOfNotes.includes(newNote)) {
+                if (!!includeAccidentals && newNote.split('').length !== 1) {
+                    console.log(includeAccidentals, newNote.split('').length !== 1);
+                    i--;
+                    continue;
+                }
                 numOfNotes.push(newNote);
                 continue;
             }
@@ -42,9 +47,11 @@ const renderOnDom = (function() {
     const scaleButton = document.querySelector('#random-scale--button');
     const noteButton = document.querySelector('#random-notes--button');
     const display = document.querySelector('#display');
+    const numSelect = document.querySelector('#note-number');
+    const accidentalSelect = document.querySelector('#accidentals');
 
     function renderNotes() {
-        display.textContent = guitarUtils.getNumberOfNotes();
+        display.textContent = guitarUtils.getNumberOfNotes(numSelect.value, Number(accidentalSelect.value));
     }
 
     function renderScale() {
@@ -56,4 +63,8 @@ const renderOnDom = (function() {
         noteButton.addEventListener('click', renderNotes);
     }
     init();
+
+    return {
+        accidentalSelect,
+    }
 })();

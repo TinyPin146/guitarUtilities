@@ -10,7 +10,26 @@
 </head>
 <body>
     <h1 id="display"></h1>
-    <button type="button" id="random-scale--button">Get random scale</button>
-    <button type="button" id="random-notes--button">Get random 5 notes</button>
+    <div class="scale-generator"><button type="button" id="random-scale--button">Get random scale</button></div>
+    <div class="notes-generator">
+        <button type="button" id="random-notes--button">Get random notes</button>
+        <form action="./index.html" method="post">
+            <label for="note-number">Num of notes</label>
+            <select name="note-number" id="note-number">
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+               <option value="6">6</option>
+               <option value="7">7</option>
+            </select>
+            <label for="accidentals">Include accidentals?</label>
+            <select name="accidentals" id="accidentals">
+                <option value="0">Yes</option>
+                <option value="1">No</option>
+            </select>
+        </form>
+    </div>
 </body>
 </html>
